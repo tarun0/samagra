@@ -16,4 +16,8 @@ public class Repository {
     public Observable<JsonElement> fetchCommentsList() {
         return apiCallInterface.fetchCommentsList();
     }
+
+    public Observable<JsonElement> fetchPostsList() {
+        return apiCallInterface.fetchPostsList();
+    }
 }

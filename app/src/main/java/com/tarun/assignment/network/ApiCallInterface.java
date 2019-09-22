@@ -9,4 +9,7 @@ import retrofit2.http.GET;
 public interface ApiCallInterface {
     @GET("comments")
     Observable<JsonElement> fetchCommentsList();
+
+    @GET("posts")
+    Observable<JsonElement> fetchPostsList();
 }

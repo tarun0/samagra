@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.tarun.assignment.model.ApiResponse;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.inject.Inject;
@@ -29,6 +30,12 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.tv_end1)
     TextView tvEnd1;
 
+    @BindView(R.id.tv_start4)
+    TextView tvStart4;
+
+    @BindView(R.id.tv_end4)
+    TextView tvEnd4;
+
     MainActivityViewmodel viewmodel;
 
     @Override
@@ -40,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
         ((App) getApplication()).getAppComponent().doInjection(this);
 
         viewmodel = ViewModelProviders.of(this, viewModelFactory).get(MainActivityViewmodel.class);
-        viewmodel.loginResponse().observe(this, this::consumeResponse);
+        viewmodel.loginResponse1().observe(this, this::consumeResponse1);
+        viewmodel.loginResponse4().observe(this, this::consumeResponse4);
 
 
         new CountDownTimer(5000, 1000) {
@@ -54,24 +62,41 @@ public class MainActivity extends AppCompatActivity {
             }
 
             public void onFinish() {
-                viewmodel.hitApi();
+                viewmodel.hitAllApi();
             }
 
         }.start();
     }
 
-    private void consumeResponse(ApiResponse response) {
+    private void consumeResponse1(ApiResponse response) {
         switch (response.status) {
             case LOADING:
-                tvStart1.setText(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+                tvStart1.setText(Calendar.getInstance().getTimeInMillis() + "");
                 break;
 
             case SUCCESS:
-                tvEnd1.setText(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+                tvEnd1.setText(Calendar.getInstance().getTimeInMillis() + "");
                 break;
 
             case ERROR:
-                tvEnd1.setText(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+                tvEnd1.setText("Error: " + Calendar.getInstance().getTimeInMillis() + "");
+                break;
+
+        }
+    }
+
+    private void consumeResponse4(ApiResponse response) {
+        switch (response.status) {
+            case LOADING:
+                tvStart4.setText(Calendar.getInstance().getTimeInMillis() + "");
+                break;
+
+            case SUCCESS:
+                tvEnd4.setText(Calendar.getInstance().getTimeInMillis() + "");
+                break;
+
+            case ERROR:
+                tvEnd4.setText("Error: " + Calendar.getInstance().getTimeInMillis() + "");
                 break;
 
         }
