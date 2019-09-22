@@ -55,6 +55,24 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.tv_end_posts)
     TextView tvEndPosts;
 
+    @BindView(R.id.tv_start_save_photos)
+    TextView tvStartSavePhoto;
+
+    @BindView(R.id.tv_end_save_photos)
+    TextView tvEndSavePhoto;
+
+    @BindView(R.id.tv_start_save_posts)
+    TextView tvStartSavePost;
+
+    @BindView(R.id.tv_end_save_posts)
+    TextView tvEndSavePost;
+
+    @BindView(R.id.tv_start_save_todo)
+    TextView tvStartSaveTodo;
+
+    @BindView(R.id.tv_end_save_todo)
+    TextView tvEndSaveTodo;
+
     MainActivityViewmodel viewmodel;
 
     @Override
@@ -71,8 +89,10 @@ public class MainActivity extends AppCompatActivity {
         viewmodel.loginResponseTodo().observe(this, this::consumeResponseTodos);
         viewmodel.loginResponsePosts().observe(this, this::consumeResponsePosts);
 
+        viewmodel.getDbLiveDataPhotosFinished().observe(this, this::consumeDbWritePhoto);
+        viewmodel.getDbLiveDataPostsFinished().observe(this, this::consumeDbWritePost);
+        viewmodel.getDbLiveDataTodoFinished().observe(this, this::consumeDbWriteTodo);
         viewmodel.getDbLiveDataCommentFinished().observe(this, this::consumeDbWriteComment);
-        MyDatabase d = MyDatabase.getInstance(getApplicationContext());
 
         new CountDownTimer(5000, 1000) {
 
@@ -94,6 +114,30 @@ public class MainActivity extends AppCompatActivity {
             tvEndSaveComments.setText("Finished DB: " + Calendar.getInstance().getTimeInMillis());
         } else {
             Toast.makeText(this, "Failure writing Comments DB", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void consumeDbWritePost(Boolean hasFinished) {
+        if (hasFinished) {
+            tvEndSavePost.setText("Finished DB: " + Calendar.getInstance().getTimeInMillis());
+        } else {
+            Toast.makeText(this, "Failure writing Post DB", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void consumeDbWritePhoto(Boolean hasFinished) {
+        if (hasFinished) {
+            tvEndSavePhoto.setText("Finished DB: " + Calendar.getInstance().getTimeInMillis());
+        } else {
+            Toast.makeText(this, "Failure writing Photo DB", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void consumeDbWriteTodo(Boolean hasFinished) {
+        if (hasFinished) {
+            tvEndSaveTodo.setText("Finished DB: " + Calendar.getInstance().getTimeInMillis());
+        } else {
+            Toast.makeText(this, "Failure writing Todo DB", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -124,6 +168,8 @@ public class MainActivity extends AppCompatActivity {
 
             case SUCCESS:
                 tvEndPosts.setText("End: " +Calendar.getInstance().getTimeInMillis() + "");
+                tvStartSavePost.setText("Start DB: " + Calendar.getInstance().getTimeInMillis() + "");
+                viewmodel.addPost(response.data);
                 break;
 
             case ERROR:
@@ -141,6 +187,8 @@ public class MainActivity extends AppCompatActivity {
 
             case SUCCESS:
                 tvEndPhotos.setText("End: " +Calendar.getInstance().getTimeInMillis() + "");
+                tvStartSavePhoto.setText("Start DB: " + Calendar.getInstance().getTimeInMillis() + "");
+                viewmodel.addPhoto(response.data);
                 break;
 
             case ERROR:
@@ -158,6 +206,8 @@ public class MainActivity extends AppCompatActivity {
 
             case SUCCESS:
                 tvEndTodos.setText("End: " + Calendar.getInstance().getTimeInMillis() + "");
+                tvStartSaveTodo.setText("Start DB: " + Calendar.getInstance().getTimeInMillis() + "");
+                viewmodel.addTodo(response.data);
                 break;
 
             case ERROR:

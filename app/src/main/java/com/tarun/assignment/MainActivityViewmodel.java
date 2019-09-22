@@ -39,6 +39,9 @@ public class MainActivityViewmodel extends ViewModel {
     private final MutableLiveData<ApiResponse> responseLiveDataTodo = new MutableLiveData<>();
     private final MutableLiveData<ApiResponse> responseLiveDataPosts = new MutableLiveData<>();
     private final MutableLiveData<Boolean> dbLiveDataCommentFinished = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> dbLiveDataTodoFinished = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> dbLiveDataPhotosFinished = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> dbLiveDataPostsFinished = new MutableLiveData<>();
 
     private MyDatabase db;
 
@@ -49,6 +52,18 @@ public class MainActivityViewmodel extends ViewModel {
 
     public MutableLiveData<ApiResponse> loginResponseComments() {
         return responseLiveDataComments;
+    }
+
+    public MutableLiveData<Boolean> getDbLiveDataTodoFinished() {
+        return dbLiveDataTodoFinished;
+    }
+
+    public MutableLiveData<Boolean> getDbLiveDataPhotosFinished() {
+        return dbLiveDataPhotosFinished;
+    }
+
+    public MutableLiveData<Boolean> getDbLiveDataPostsFinished() {
+        return dbLiveDataPostsFinished;
     }
 
     public MutableLiveData<Boolean> getDbLiveDataCommentFinished() {
@@ -81,7 +96,7 @@ public class MainActivityViewmodel extends ViewModel {
                         throwable -> responseLiveDataComments.setValue(ApiResponse.error(throwable))
                 ));
 
-        /*disposables.add(repository.fetchPhotosList()
+        disposables.add(repository.fetchPhotosList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe((d) -> responseLiveDataPhotos.setValue(ApiResponse.loading()))
@@ -106,7 +121,7 @@ public class MainActivityViewmodel extends ViewModel {
                 .subscribe(
                         result -> responseLiveDataPosts.setValue(ApiResponse.success(result)),
                         throwable -> responseLiveDataPosts.setValue(ApiResponse.error(throwable))
-                ));*/
+                ));
     }
 
     void addComment(List<Comment> comments) {
@@ -131,9 +146,96 @@ public class MainActivityViewmodel extends ViewModel {
 
     }
 
+    void addPhoto(List<Comment> comments) {
+        dbDisposable.add(insertPhotos(comments)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        new Action() {
+                            @Override
+                            public void run() throws Exception {
+                                dbLiveDataPhotosFinished.postValue(true);
+
+                            }
+                        },
+                        new Consumer<Throwable>() {
+                            @Override
+                            public void accept(Throwable throwable) throws Exception {
+                                dbLiveDataPhotosFinished.postValue(false);
+                            }
+                        }
+                ));
+
+    }
+
+    void addPost(List<Comment> comments) {
+        dbDisposable.add(insertPosts(comments)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        new Action() {
+                            @Override
+                            public void run() throws Exception {
+                                dbLiveDataPostsFinished.postValue(true);
+
+                            }
+                        },
+                        new Consumer<Throwable>() {
+                            @Override
+                            public void accept(Throwable throwable) throws Exception {
+                                dbLiveDataPostsFinished.postValue(false);
+                            }
+                        }
+                ));
+
+    }
+
+    void addTodo(List<Comment> comments) {
+        dbDisposable.add(insertTodos(comments)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        new Action() {
+                            @Override
+                            public void run() throws Exception {
+                                dbLiveDataTodoFinished.postValue(true);
+
+                            }
+                        },
+                        new Consumer<Throwable>() {
+                            @Override
+                            public void accept(Throwable throwable) throws Exception {
+                                dbLiveDataTodoFinished.postValue(false);
+                            }
+                        }
+                ));
+
+    }
+
     private Completable insertComments(List<Comment> comments) {
         for (Comment comment: comments) {
             db.commentModel().addComment(new DbComment(comment));
+        }
+        return Completable.complete();
+    }
+
+    private Completable insertPosts(List<Comment> comments) {
+        for (Comment comment: comments) {
+            db.postModel().addPost(new DbComment(comment));
+        }
+        return Completable.complete();
+    }
+
+    private Completable insertPhotos(List<Comment> comments) {
+        for (Comment comment: comments) {
+            db.photosModel().addPhoto(new DbComment(comment));
+        }
+        return Completable.complete();
+    }
+
+    private Completable insertTodos(List<Comment> comments) {
+        for (Comment comment: comments) {
+            db.todoModel().addTodo(new DbComment(comment));
         }
         return Completable.complete();
     }

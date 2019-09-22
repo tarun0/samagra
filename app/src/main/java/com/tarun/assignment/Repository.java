@@ -20,15 +20,15 @@ public class Repository {
         return apiCallInterface.fetchCommentsList();
     }
 
-    public Observable<JsonElement> fetchPhotosList() {
+    public Observable<List<Comment>> fetchPhotosList() {
         return apiCallInterface.fetchPhotosList();
     }
 
-    public Observable<JsonElement> fetchTodoList() {
+    public Observable<List<Comment>> fetchTodoList() {
         return apiCallInterface.fetchTodoList();
     }
 
-    public Observable<JsonElement> fetchPostsList() {
+    public Observable<List<Comment>> fetchPostsList() {
         return apiCallInterface.fetchPostsList();
     }
 }

@@ -14,11 +14,11 @@ public interface ApiCallInterface {
     Observable<List<Comment>> fetchCommentsList();
 
     @GET("photos")
-    Observable<JsonElement> fetchPhotosList();
+    Observable<List<Comment>> fetchPhotosList();
 
     @GET("todos")
-    Observable<JsonElement> fetchTodoList();
+    Observable<List<Comment>> fetchTodoList();
 
     @GET("posts")
-    Observable<JsonElement> fetchPostsList();
+    Observable<List<Comment>> fetchPostsList();
 }

@@ -22,4 +22,7 @@ public abstract class MyDatabase extends RoomDatabase{
     }
 
     public abstract DaoComment commentModel();
+    public abstract DaoPhotos photosModel();
+    public abstract DaoPosts postModel();
+    public abstract DaoTodo todoModel();
 }
