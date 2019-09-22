@@ -15,8 +15,8 @@ public class ViewModelFactory implements android.arch.lifecycle.ViewModelProvide
 
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        if (modelClass.isAssignableFrom(LoginViewModel.class)) {
-            return (T) new LoginViewModel(repository);
+        if (modelClass.isAssignableFrom(MainActivityViewmodel.class)) {
+            return (T) new MainActivityViewmodel(repository);
         }
         throw new IllegalArgumentException("Unknown class name");
     }

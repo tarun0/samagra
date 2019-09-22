@@ -6,11 +6,8 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import com.saquib.mvvmwithrxjavademo.login.Repository;
-import com.saquib.mvvmwithrxjavademo.utils.ApiCallInterface;
-import com.saquib.mvvmwithrxjavademo.utils.Urls;
-import com.saquib.mvvmwithrxjavademo.utils.ViewModelFactory;
 import com.tarun.assignment.Repository;
+import com.tarun.assignment.ViewModelFactory;
 import com.tarun.assignment.network.ApiCallInterface;
 
 import java.util.concurrent.TimeUnit;
