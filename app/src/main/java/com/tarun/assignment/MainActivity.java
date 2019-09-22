@@ -30,6 +30,18 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.tv_end1)
     TextView tvEnd1;
 
+    @BindView(R.id.tv_start2)
+    TextView tvStart2;
+
+    @BindView(R.id.tv_end2)
+    TextView tvEnd2;
+
+    @BindView(R.id.tv_start3)
+    TextView tvStart3;
+
+    @BindView(R.id.tv_end3)
+    TextView tvEnd3;
+
     @BindView(R.id.tv_start4)
     TextView tvStart4;
 
@@ -48,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
         viewmodel = ViewModelProviders.of(this, viewModelFactory).get(MainActivityViewmodel.class);
         viewmodel.loginResponse1().observe(this, this::consumeResponse1);
+        viewmodel.loginResponse2().observe(this, this::consumeResponse2);
+        viewmodel.loginResponse3().observe(this, this::consumeResponse3);
         viewmodel.loginResponse4().observe(this, this::consumeResponse4);
 
 
@@ -97,6 +111,40 @@ public class MainActivity extends AppCompatActivity {
 
             case ERROR:
                 tvEnd4.setText("Error: " + Calendar.getInstance().getTimeInMillis() + "");
+                break;
+
+        }
+    }
+
+    private void consumeResponse2(ApiResponse response) {
+        switch (response.status) {
+            case LOADING:
+                tvStart2.setText(Calendar.getInstance().getTimeInMillis() + "");
+                break;
+
+            case SUCCESS:
+                tvEnd2.setText(Calendar.getInstance().getTimeInMillis() + "");
+                break;
+
+            case ERROR:
+                tvEnd2.setText("Error: " + Calendar.getInstance().getTimeInMillis() + "");
+                break;
+
+        }
+    }
+
+    private void consumeResponse3(ApiResponse response) {
+        switch (response.status) {
+            case LOADING:
+                tvStart3.setText(Calendar.getInstance().getTimeInMillis() + "");
+                break;
+
+            case SUCCESS:
+                tvEnd3.setText(Calendar.getInstance().getTimeInMillis() + "");
+                break;
+
+            case ERROR:
+                tvEnd3.setText("Error: " + Calendar.getInstance().getTimeInMillis() + "");
                 break;
 
         }

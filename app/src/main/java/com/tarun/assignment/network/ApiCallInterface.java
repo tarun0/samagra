@@ -10,6 +10,12 @@ public interface ApiCallInterface {
     @GET("comments")
     Observable<JsonElement> fetchCommentsList();
 
+    @GET("photos")
+    Observable<JsonElement> fetchPhotosList();
+
+    @GET("todos")
+    Observable<JsonElement> fetchTodoList();
+
     @GET("posts")
     Observable<JsonElement> fetchPostsList();
 }

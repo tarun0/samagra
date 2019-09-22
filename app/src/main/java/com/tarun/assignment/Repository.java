@@ -17,6 +17,14 @@ public class Repository {
         return apiCallInterface.fetchCommentsList();
     }
 
+    public Observable<JsonElement> fetchPhotosList() {
+        return apiCallInterface.fetchPhotosList();
+    }
+
+    public Observable<JsonElement> fetchTodoList() {
+        return apiCallInterface.fetchTodoList();
+    }
+
     public Observable<JsonElement> fetchPostsList() {
         return apiCallInterface.fetchPostsList();
     }
