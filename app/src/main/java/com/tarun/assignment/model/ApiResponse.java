@@ -3,6 +3,8 @@ package com.tarun.assignment.model;
 import com.google.gson.JsonElement;
 import com.tarun.assignment.Status;
 
+import java.util.List;
+
 import io.reactivex.annotations.NonNull;
 import io.reactivex.annotations.Nullable;
 
@@ -10,12 +12,12 @@ public class ApiResponse {
     public final Status status;
 
     @Nullable
-    public final JsonElement data;
+    public final List<Comment> data;
 
     @Nullable
     public final Throwable error;
 
-    private ApiResponse(Status status, @Nullable JsonElement data, @Nullable Throwable error) {
+    private ApiResponse(Status status, @Nullable List<Comment> data, @Nullable Throwable error) {
         this.status = status;
         this.data = data;
         this.error = error;
@@ -25,7 +27,7 @@ public class ApiResponse {
         return new ApiResponse(Status.LOADING, null, null);
     }
 
-    public static ApiResponse success(@NonNull JsonElement data) {
+    public static ApiResponse success(@NonNull List<Comment> data) {
         return new ApiResponse(Status.SUCCESS, data, null);
     }
 

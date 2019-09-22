@@ -1,7 +1,10 @@
 package com.tarun.assignment;
 
 import com.google.gson.JsonElement;
+import com.tarun.assignment.model.Comment;
 import com.tarun.assignment.network.ApiCallInterface;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 
@@ -13,7 +16,7 @@ public class Repository {
         this.apiCallInterface = apiCallInterface;
     }
 
-    public Observable<JsonElement> fetchCommentsList() {
+    public Observable<List<Comment>> fetchCommentsList() {
         return apiCallInterface.fetchCommentsList();
     }
 

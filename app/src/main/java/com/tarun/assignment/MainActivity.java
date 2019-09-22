@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.tarun.assignment.db.MyDatabase;
 import com.tarun.assignment.model.ApiResponse;
 
 import java.text.SimpleDateFormat;
@@ -29,6 +30,12 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.tv_end_comments)
     TextView tvEndComments;
+
+    @BindView(R.id.tv_start_save_comments)
+    TextView tvStartSaveComment;
+
+    @BindView(R.id.tv_end_save_comments)
+    TextView tvEndSaveComments;
 
     @BindView(R.id.tv_start_photos)
     TextView tvStartPhotos;
@@ -64,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
         viewmodel.loginResponseTodo().observe(this, this::consumeResponseTodos);
         viewmodel.loginResponsePosts().observe(this, this::consumeResponsePosts);
 
+        viewmodel.getDbLiveDataCommentFinished().observe(this, this::consumeDbWriteComment);
+        MyDatabase d = MyDatabase.getInstance(getApplicationContext());
 
         new CountDownTimer(5000, 1000) {
 
@@ -80,6 +89,14 @@ public class MainActivity extends AppCompatActivity {
         }.start();
     }
 
+    private void consumeDbWriteComment(Boolean hasFinished) {
+        if (hasFinished) {
+            tvEndSaveComments.setText("Finished DB: " + Calendar.getInstance().getTimeInMillis());
+        } else {
+            Toast.makeText(this, "Failure writing Comments DB", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private void consumeResponseComments(ApiResponse response) {
         switch (response.status) {
             case LOADING:
@@ -88,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
 
             case SUCCESS:
                 tvEndComments.setText("End: " +Calendar.getInstance().getTimeInMillis() + "");
+                tvStartSaveComment.setText("Start DB: " + Calendar.getInstance().getTimeInMillis() + "");
+                viewmodel.addComment(response.data);
                 break;
 
             case ERROR:

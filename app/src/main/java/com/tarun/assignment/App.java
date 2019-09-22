@@ -10,7 +10,7 @@ import com.tarun.assignment.di.UtilsModule;
 
 public class App extends Application {
     AppComponent appComponent;
-    Context context;
+    private static Context context;
 
     @Override
     public void onCreate() {
@@ -21,6 +21,10 @@ public class App extends Application {
 
     public AppComponent getAppComponent() {
         return appComponent;
+    }
+
+    public static Context getContext() {
+        return context;
     }
 
     @Override

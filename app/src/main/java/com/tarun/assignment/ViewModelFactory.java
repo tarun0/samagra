@@ -1,6 +1,7 @@
 package com.tarun.assignment;
 
 import android.arch.lifecycle.ViewModel;
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import javax.inject.Inject;
