@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="_comments.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,144 +7,144 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:id="@+id/layout1"
+        android:id="@+id/layout_comments"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/layout4"
+        app:layout_constraintBottom_toTopOf="@id/layout_posts"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/layout2"
+        app:layout_constraintRight_toLeftOf="@id/layout_photos"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tv_start1"
+            android:id="@+id/tv_start_comments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Start" />
 
         <TextView
-            android:id="@+id/tv_end1"
+            android:id="@+id/tv_end_comments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="End" />
 
         <TextView
-            android:id="@+id/tv_start_save1"
+            android:id="@+id/tv_start_save_comments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Start Save" />
 
         <TextView
-            android:id="@+id/tv_end_save1"
+            android:id="@+id/tv_end_save_comments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="End Save" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/layout2"
+        android:id="@+id/layout_photos"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/layout4"
-        app:layout_constraintLeft_toRightOf="@id/layout1"
+        app:layout_constraintBottom_toTopOf="@id/layout_posts"
+        app:layout_constraintLeft_toRightOf="@id/layout_comments"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tv_start2"
+            android:id="@+id/tv_start_photos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Start" />
 
         <TextView
-            android:id="@+id/tv_end2"
+            android:id="@+id/tv_end_photos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="End" />
 
         <TextView
-            android:id="@+id/tv_start_save2"
+            android:id="@+id/tv_start_save_photos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Start Save" />
 
         <TextView
-            android:id="@+id/tv_end_save2"
+            android:id="@+id/tv_end_save_photos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="End Save" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/layout3"
+        android:id="@+id/layout_todo"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/container"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/layout4"
-        app:layout_constraintTop_toBottomOf="@id/layout1">
+        app:layout_constraintRight_toLeftOf="@id/layout_posts"
+        app:layout_constraintTop_toBottomOf="@id/layout_comments">
 
         <TextView
-            android:id="@+id/tv_start3"
+            android:id="@+id/tv_start_todo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Start" />
 
         <TextView
-            android:id="@+id/tv_end3"
+            android:id="@+id/tv_end_todo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="End" />
 
         <TextView
-            android:id="@+id/tv_start_save3"
+            android:id="@+id/tv_start_save_todo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Start Save" />
 
         <TextView
-            android:id="@+id/tv_end_save3"
+            android:id="@+id/tv_end_save_todo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="End Save" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/layout4"
+        android:id="@+id/layout_posts"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/container"
-        app:layout_constraintLeft_toRightOf="@+id/layout3"
+        app:layout_constraintLeft_toRightOf="@+id/layout_todo"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout1">
+        app:layout_constraintTop_toBottomOf="@id/layout_comments">
 
         <TextView
-            android:id="@+id/tv_start4"
+            android:id="@+id/tv_start_posts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Start" />
 
         <TextView
-            android:id="@+id/tv_end4"
+            android:id="@+id/tv_end_posts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="End" />
 
         <TextView
-            android:id="@+id/tv_start_save4"
+            android:id="@+id/tv_start_save_posts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Start Save" />
 
         <TextView
-            android:id="@+id/tv_end_save4"
+            android:id="@+id/tv_end_save_posts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="End Save" />
@@ -155,7 +155,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout3"
+        app:layout_constraintTop_toBottomOf="@id/layout_todo"
         android:background="@color/colorPrimary">
 
     </RelativeLayout>

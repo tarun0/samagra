@@ -24,29 +24,29 @@ public class MainActivity extends AppCompatActivity {
     @Inject
     ViewModelFactory viewModelFactory;
 
-    @BindView(R.id.tv_start1)
-    TextView tvStart1;
+    @BindView(R.id.tv_start_comments)
+    TextView tvStartComments;
 
-    @BindView(R.id.tv_end1)
-    TextView tvEnd1;
+    @BindView(R.id.tv_end_comments)
+    TextView tvEndComments;
 
-    @BindView(R.id.tv_start2)
-    TextView tvStart2;
+    @BindView(R.id.tv_start_photos)
+    TextView tvStartPhotos;
 
-    @BindView(R.id.tv_end2)
-    TextView tvEnd2;
+    @BindView(R.id.tv_end_photos)
+    TextView tvEndPhotos;
 
-    @BindView(R.id.tv_start3)
-    TextView tvStart3;
+    @BindView(R.id.tv_start_todo)
+    TextView tvStartTodos;
 
-    @BindView(R.id.tv_end3)
-    TextView tvEnd3;
+    @BindView(R.id.tv_end_todo)
+    TextView tvEndTodos;
 
-    @BindView(R.id.tv_start4)
-    TextView tvStart4;
+    @BindView(R.id.tv_start_posts)
+    TextView tvStartPosts;
 
-    @BindView(R.id.tv_end4)
-    TextView tvEnd4;
+    @BindView(R.id.tv_end_posts)
+    TextView tvEndPosts;
 
     MainActivityViewmodel viewmodel;
 
@@ -59,18 +59,16 @@ public class MainActivity extends AppCompatActivity {
         ((App) getApplication()).getAppComponent().doInjection(this);
 
         viewmodel = ViewModelProviders.of(this, viewModelFactory).get(MainActivityViewmodel.class);
-        viewmodel.loginResponse1().observe(this, this::consumeResponse1);
-        viewmodel.loginResponse2().observe(this, this::consumeResponse2);
-        viewmodel.loginResponse3().observe(this, this::consumeResponse3);
-        viewmodel.loginResponse4().observe(this, this::consumeResponse4);
+        viewmodel.loginResponseComments().observe(this, this::consumeResponseComments);
+        viewmodel.loginResponsePhotos().observe(this, this::consumeResponsePhotos);
+        viewmodel.loginResponseTodo().observe(this, this::consumeResponseTodos);
+        viewmodel.loginResponsePosts().observe(this, this::consumeResponsePosts);
 
 
         new CountDownTimer(5000, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                if (millisUntilFinished > 3500) {
-                    Toast.makeText(MainActivity.this, millisUntilFinished + "", Toast.LENGTH_SHORT).show();
-                } else if (millisUntilFinished > 1500) {
+                if (millisUntilFinished > 1500) {
                     Toast.makeText(MainActivity.this, millisUntilFinished + "", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -82,69 +80,69 @@ public class MainActivity extends AppCompatActivity {
         }.start();
     }
 
-    private void consumeResponse1(ApiResponse response) {
+    private void consumeResponseComments(ApiResponse response) {
         switch (response.status) {
             case LOADING:
-                tvStart1.setText(Calendar.getInstance().getTimeInMillis() + "");
+                tvStartComments.setText("Start: " + Calendar.getInstance().getTimeInMillis() + "");
                 break;
 
             case SUCCESS:
-                tvEnd1.setText(Calendar.getInstance().getTimeInMillis() + "");
+                tvEndComments.setText("End: " +Calendar.getInstance().getTimeInMillis() + "");
                 break;
 
             case ERROR:
-                tvEnd1.setText("Error: " + Calendar.getInstance().getTimeInMillis() + "");
+                tvEndComments.setText("Error: " + Calendar.getInstance().getTimeInMillis() + "");
                 break;
 
         }
     }
 
-    private void consumeResponse4(ApiResponse response) {
+    private void consumeResponsePosts(ApiResponse response) {
         switch (response.status) {
             case LOADING:
-                tvStart4.setText(Calendar.getInstance().getTimeInMillis() + "");
+                tvStartPosts.setText("Start: " +Calendar.getInstance().getTimeInMillis() + "");
                 break;
 
             case SUCCESS:
-                tvEnd4.setText(Calendar.getInstance().getTimeInMillis() + "");
+                tvEndPosts.setText("End: " +Calendar.getInstance().getTimeInMillis() + "");
                 break;
 
             case ERROR:
-                tvEnd4.setText("Error: " + Calendar.getInstance().getTimeInMillis() + "");
+                tvEndPosts.setText("Error: " + Calendar.getInstance().getTimeInMillis() + "");
                 break;
 
         }
     }
 
-    private void consumeResponse2(ApiResponse response) {
+    private void consumeResponsePhotos(ApiResponse response) {
         switch (response.status) {
             case LOADING:
-                tvStart2.setText(Calendar.getInstance().getTimeInMillis() + "");
+                tvStartPhotos.setText("Start: " +Calendar.getInstance().getTimeInMillis() + "");
                 break;
 
             case SUCCESS:
-                tvEnd2.setText(Calendar.getInstance().getTimeInMillis() + "");
+                tvEndPhotos.setText("End: " +Calendar.getInstance().getTimeInMillis() + "");
                 break;
 
             case ERROR:
-                tvEnd2.setText("Error: " + Calendar.getInstance().getTimeInMillis() + "");
+                tvEndPhotos.setText("Error: " + Calendar.getInstance().getTimeInMillis() + "");
                 break;
 
         }
     }
 
-    private void consumeResponse3(ApiResponse response) {
+    private void consumeResponseTodos(ApiResponse response) {
         switch (response.status) {
             case LOADING:
-                tvStart3.setText(Calendar.getInstance().getTimeInMillis() + "");
+                tvStartTodos.setText("Start: " +Calendar.getInstance().getTimeInMillis() + "");
                 break;
 
             case SUCCESS:
-                tvEnd3.setText(Calendar.getInstance().getTimeInMillis() + "");
+                tvEndTodos.setText("End: " + Calendar.getInstance().getTimeInMillis() + "");
                 break;
 
             case ERROR:
-                tvEnd3.setText("Error: " + Calendar.getInstance().getTimeInMillis() + "");
+                tvEndTodos.setText("Error: " + Calendar.getInstance().getTimeInMillis() + "");
                 break;
 
         }

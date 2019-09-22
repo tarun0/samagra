@@ -19,30 +19,30 @@ public class MainActivityViewmodel extends ViewModel {
 
     private Repository repository;
     private final CompositeDisposable disposables = new CompositeDisposable();
-    private final MutableLiveData<ApiResponse> responseLiveData1 = new MutableLiveData<>();
-    private final MutableLiveData<ApiResponse> responseLiveData2 = new MutableLiveData<>();
-    private final MutableLiveData<ApiResponse> responseLiveData3 = new MutableLiveData<>();
-    private final MutableLiveData<ApiResponse> responseLiveData4 = new MutableLiveData<>();
+    private final MutableLiveData<ApiResponse> responseLiveDataComments = new MutableLiveData<>();
+    private final MutableLiveData<ApiResponse> responseLiveDataPhotos = new MutableLiveData<>();
+    private final MutableLiveData<ApiResponse> responseLiveDataTodo = new MutableLiveData<>();
+    private final MutableLiveData<ApiResponse> responseLiveDataPosts = new MutableLiveData<>();
 
 
     public MainActivityViewmodel(Repository repository) {
         this.repository = repository;
     }
 
-    public MutableLiveData<ApiResponse> loginResponse1() {
-        return responseLiveData1;
+    public MutableLiveData<ApiResponse> loginResponseComments() {
+        return responseLiveDataComments;
     }
 
-    public MutableLiveData<ApiResponse> loginResponse2() {
-        return responseLiveData2;
+    public MutableLiveData<ApiResponse> loginResponsePhotos() {
+        return responseLiveDataPhotos;
     }
 
-    public MutableLiveData<ApiResponse> loginResponse3() {
-        return responseLiveData3;
+    public MutableLiveData<ApiResponse> loginResponseTodo() {
+        return responseLiveDataTodo;
     }
 
-    public MutableLiveData<ApiResponse> loginResponse4() {
-        return responseLiveData4;
+    public MutableLiveData<ApiResponse> loginResponsePosts() {
+        return responseLiveDataPosts;
     }
 
     public void hitAllApi() {
@@ -50,37 +50,37 @@ public class MainActivityViewmodel extends ViewModel {
         disposables.add(repository.fetchCommentsList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe((d) -> responseLiveData1.setValue(ApiResponse.loading()))
+                .doOnSubscribe((d) -> responseLiveDataComments.setValue(ApiResponse.loading()))
                 .subscribe(
-                        result -> responseLiveData1.setValue(ApiResponse.success(result)),
-                        throwable -> responseLiveData1.setValue(ApiResponse.error(throwable))
+                        result -> responseLiveDataComments.setValue(ApiResponse.success(result)),
+                        throwable -> responseLiveDataComments.setValue(ApiResponse.error(throwable))
                 ));
 
         disposables.add(repository.fetchPhotosList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe((d) -> responseLiveData2.setValue(ApiResponse.loading()))
+                .doOnSubscribe((d) -> responseLiveDataPhotos.setValue(ApiResponse.loading()))
                 .subscribe(
-                        result -> responseLiveData2.setValue(ApiResponse.success(result)),
-                        throwable -> responseLiveData2.setValue(ApiResponse.error(throwable))
+                        result -> responseLiveDataPhotos.setValue(ApiResponse.success(result)),
+                        throwable -> responseLiveDataPhotos.setValue(ApiResponse.error(throwable))
                 ));
 
         disposables.add(repository.fetchTodoList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe((d) -> responseLiveData3.setValue(ApiResponse.loading()))
+                .doOnSubscribe((d) -> responseLiveDataTodo.setValue(ApiResponse.loading()))
                 .subscribe(
-                        result -> responseLiveData3.setValue(ApiResponse.success(result)),
-                        throwable -> responseLiveData3.setValue(ApiResponse.error(throwable))
+                        result -> responseLiveDataTodo.setValue(ApiResponse.success(result)),
+                        throwable -> responseLiveDataTodo.setValue(ApiResponse.error(throwable))
                 ));
 
         disposables.add(repository.fetchPostsList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe((d) -> responseLiveData4.setValue(ApiResponse.loading()))
+                .doOnSubscribe((d) -> responseLiveDataPosts.setValue(ApiResponse.loading()))
                 .subscribe(
-                        result -> responseLiveData4.setValue(ApiResponse.success(result)),
-                        throwable -> responseLiveData4.setValue(ApiResponse.error(throwable))
+                        result -> responseLiveDataPosts.setValue(ApiResponse.success(result)),
+                        throwable -> responseLiveDataPosts.setValue(ApiResponse.error(throwable))
                 ));
     }
 
