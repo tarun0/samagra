@@ -3,8 +3,6 @@ package com.tarun.assignment.model;
 import com.google.gson.JsonElement;
 import com.tarun.assignment.Status;
 
-import java.util.List;
-
 import io.reactivex.annotations.NonNull;
 import io.reactivex.annotations.Nullable;
 

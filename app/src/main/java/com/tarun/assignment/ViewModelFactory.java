@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 import javax.inject.Inject;
 
 public class ViewModelFactory implements android.arch.lifecycle.ViewModelProvider.Factory {
-    private  Repository repository;
+    private Repository repository;
 
     @Inject
     public ViewModelFactory(Repository repository) {

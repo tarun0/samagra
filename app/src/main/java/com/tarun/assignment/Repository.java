@@ -9,11 +9,11 @@ public class Repository {
 
     private ApiCallInterface apiCallInterface;
 
-    public Repository (ApiCallInterface apiCallInterface) {
+    public Repository(ApiCallInterface apiCallInterface) {
         this.apiCallInterface = apiCallInterface;
     }
 
-  public Observable<JsonElement> fetchCommentsList() {
+    public Observable<JsonElement> fetchCommentsList() {
         return apiCallInterface.fetchCommentsList();
-  }
+    }
 }

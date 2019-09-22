@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
                 if (millisUntilFinished > 3500) {
                     Toast.makeText(MainActivity.this, millisUntilFinished + "", Toast.LENGTH_SHORT).show();
-                } else  if (millisUntilFinished > 1500) {
+                } else if (millisUntilFinished > 1500) {
                     Toast.makeText(MainActivity.this, millisUntilFinished + "", Toast.LENGTH_SHORT).show();
                 }
             }

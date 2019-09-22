@@ -7,6 +7,6 @@ import io.reactivex.Observable;
 import retrofit2.http.GET;
 
 public interface ApiCallInterface {
-    @GET ("comments")
-    Observable<JsonElement> fetchCommentsList ();
+    @GET("comments")
+    Observable<JsonElement> fetchCommentsList();
 }
