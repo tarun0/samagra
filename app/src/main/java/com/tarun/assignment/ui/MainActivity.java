@@ -1,19 +1,18 @@
-package com.tarun.assignment;
+package com.tarun.assignment.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.os.CountDownTimer;
-import android.os.SystemClock;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.tarun.assignment.db.MyDatabase;
+import com.tarun.assignment.App;
+import com.tarun.assignment.R;
+import com.tarun.assignment.ViewModelFactory;
 import com.tarun.assignment.model.ApiResponse;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -98,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
             public void onTick(long millisUntilFinished) {
                 if (millisUntilFinished > 1500) {
-                    Toast.makeText(MainActivity.this, millisUntilFinished + "", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, millisUntilFinished + " milliseconds to hit the urls", Toast.LENGTH_SHORT).show();
                 }
             }
 

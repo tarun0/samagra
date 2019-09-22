@@ -1,14 +1,10 @@
-package com.tarun.assignment;
+package com.tarun.assignment.ui;
 
-import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
-import android.content.Context;
-import android.support.annotation.NonNull;
-import android.util.Log;
 
-import com.google.gson.JsonElement;
+import com.tarun.assignment.App;
+import com.tarun.assignment.Repository;
 import com.tarun.assignment.db.DbComment;
 import com.tarun.assignment.db.MyDatabase;
 import com.tarun.assignment.model.ApiResponse;
@@ -16,16 +12,10 @@ import com.tarun.assignment.model.Comment;
 
 import java.util.List;
 
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import io.reactivex.Completable;
-import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
-import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 

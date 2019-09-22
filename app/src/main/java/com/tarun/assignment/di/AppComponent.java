@@ -1,6 +1,6 @@
 package com.tarun.assignment.di;
 
-import com.tarun.assignment.MainActivity;
+import com.tarun.assignment.ui.MainActivity;
 
 import javax.inject.Singleton;
 

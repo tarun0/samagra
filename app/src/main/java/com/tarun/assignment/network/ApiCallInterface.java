@@ -1,7 +1,5 @@
 package com.tarun.assignment.network;
 
-import com.google.gson.JsonElement;
-import com.tarun.assignment.model.ApiResponse;
 import com.tarun.assignment.model.Comment;
 
 import java.util.List;

@@ -1,6 +1,5 @@
 package com.tarun.assignment;
 
-import com.google.gson.JsonElement;
 import com.tarun.assignment.model.Comment;
 import com.tarun.assignment.network.ApiCallInterface;
 
